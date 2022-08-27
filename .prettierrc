@@ -10,8 +10,8 @@
       }
     }
   ],
-  "trailingComma": "all",
-  "bracketSpacing": false,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
   "arrowParens": "avoid",
   "proseWrap": "never",
   "htmlWhitespaceSensitivity": "strict",

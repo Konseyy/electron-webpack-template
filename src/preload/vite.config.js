@@ -19,12 +19,12 @@ const config = {
     assetsDir: '.',
     minify: process.env.MODE !== 'development',
     lib: {
-      entry: 'src/index.ts',
+      entry: 'src/preload.ts',
       formats: ['cjs'],
     },
     rollupOptions: {
       output: {
-        entryFileNames: '[name].cjs',
+        entryFileNames: 'index.cjs',
       },
     },
     emptyOutDir: true,

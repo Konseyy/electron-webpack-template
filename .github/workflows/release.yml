@@ -61,16 +61,9 @@ jobs:
           name: v${{ steps.version.outputs.build-version }}
           body: ${{ steps.release-note.outputs.release-note }}
 
-  upload_artifacts:
+  upload_windows:
     needs: [ draft ]
-
-    strategy:
-      matrix:
-        os: [ windows-latest, ubuntu-latest ]
-    #    To compile the application for different platforms, use:
-    #    os: [ macos-latest, ubuntu-latest, windows-latest ]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -78,6 +71,66 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - run: npm i -g pnpm
+
+      - run: pnpm i
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+
+      # The easiest way to transfer release notes to a compiled application is create `release-notes.md` in the build resources.
+      # See https://github.com/electron-userland/electron-builder/issues/1511#issuecomment-310160119
+      - name: Prepare release notes
+        env:
+          RELEASE_NOTE: ${{ needs.draft.outputs.release-note }}
+        run: echo "$RELEASE_NOTE" >> ./buildResources/release-notes.md
+
+      # Compile app and upload artifacts
+      - name: Compile & release Electron app
+        uses: ./.github/actions/electron-builder
+        id: electron-builder
+        env:
+          VITE_APP_VERSION: ${{ needs.draft.outputs.version }}
+        with:
+          build_script_name: build
+          args: --config .electron-builder.config.js
+
+          # GitHub token, automatically provided to the action
+          # (No need to define this secret in the repo settings)
+          github_token: ${{ secrets.github_token }}
+
+          # If the commit is tagged with a version (e.g. "v1.0.0"),
+          # release the app after building
+          release: true
+
+          # Sometimes the build may fail due to a connection problem with Apple, GitHub, etc. servers.
+          # This option will restart the build as many attempts as possible
+          max_attempts: 3
+
+
+          # Code Signing params
+
+          # Base64-encoded code signing certificate for Windows
+          # windows_certs: ''
+
+          # Password for decrypting `windows_certs`
+          # windows_certs_password: ''
+
+          # Base64-encoded code signing certificate for macOS
+          # mac_certs: ''
+
+          # Password for decrypting `mac_certs`
+          # mac_certs_password: ''
+  upload_linux:
+    needs: [ draft ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: sudo snap install snapcraft --classic
       - run: npm i -g pnpm
 
       - run: pnpm i

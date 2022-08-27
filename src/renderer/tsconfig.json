@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "#preload": ["../preload/src/index"],
+      "/@/*": ["./src/*"]
+    },
+    "lib": ["ESNext", "dom", "dom.iterable"]
+  },
+  "include": ["src/**/*.vue", "src/**/*.ts", "src/**/*.tsx", "types/**/*.d.ts", "../../types/**/*.d.ts"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
+  "extends": "../../tsconfig.common.json"
+}

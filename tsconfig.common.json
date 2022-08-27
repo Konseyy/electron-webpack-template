@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["node"],
     "module": "esnext",
     "target": "esnext",
     "sourceMap": false,
@@ -7,9 +8,7 @@
     "skipLibCheck": true,
     "strict": true,
     "isolatedModules": true,
-    "types": ["node"],
-    "baseUrl": "."
-  },
-  "include": ["src/**/*.ts", "../../types/**/*.d.ts"],
-  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+    "jsx": "preserve",
+    "lib": ["ESNext", "dom", "dom.iterable"]
+  }
 }

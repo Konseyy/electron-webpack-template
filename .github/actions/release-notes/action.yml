@@ -19,5 +19,5 @@ outputs:
   release-note: # id of output
     description: 'Release notes'
 runs:
-  using: 'node12'
-  main: 'main.js'
+  using: 'node18'
+  main: 'index.js'

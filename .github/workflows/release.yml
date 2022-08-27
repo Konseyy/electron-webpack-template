@@ -93,7 +93,8 @@ jobs:
 
       # Compile app and upload artifacts
       - name: Compile & release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
+        uses: ./.github/actions/electron-builder
+        id: electron-builder
         env:
           VITE_APP_VERSION: ${{ needs.draft.outputs.version }}
         with:

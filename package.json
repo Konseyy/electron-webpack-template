@@ -17,7 +17,7 @@
   },
   "main": "src/main/dist/index.cjs",
   "scripts": {
-    "start": "node scripts/watch.mjs",
+    "start": "node scripts/dev-server.mjs",
     "build": "pnpm build:main && pnpm build:preload && pnpm build:renderer",
     "build:main": "cd ./src/main && vite build",
     "build:preload": "cd ./src/preload && vite build",

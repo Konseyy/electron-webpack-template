@@ -22,4 +22,4 @@ jobs:
       - run: pnpm i
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: pnpm lint --if-present
+      - run: pnpm lint

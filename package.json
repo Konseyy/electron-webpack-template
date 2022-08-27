@@ -6,6 +6,7 @@
     "node": ">=v18.0.0",
     "pnpm": ">=7.0.0"
   },
+  "packageManager": "pnpm@7.0.0",
   "repository": {
     "url": "https://github.com/Konseyy/vite-electron-boilerplate"
   },

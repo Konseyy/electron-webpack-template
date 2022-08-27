@@ -10,12 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v2.2.2
         with:
-          node-version: 16 # Need for npm >=7.7
-          cache: 'npm'
-
-      - run: npm run format --if-present
+          node-version: 18
+      - run: pnpm format --if-present
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com

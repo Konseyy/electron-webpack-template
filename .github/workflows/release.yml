@@ -63,8 +63,12 @@ jobs:
 
   upload_artifacts:
     needs: [ draft ]
-    matrix:
+
+    strategy:
+      matrix:
         os: [ windows-latest ]
+    #    To compile the application for different platforms, use:
+    #    os: [ macos-latest, ubuntu-latest, windows-latest ]
 
     runs-on: ${{ matrix.os }}
 

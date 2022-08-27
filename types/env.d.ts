@@ -12,7 +12,7 @@
 interface ImportMetaEnv {
   /**
    * URL where `renderer` web page is running.
-   * This variable is initialized in scripts/watch.ts
+   * This variable is initialized in scripts/dev-server.mjs
    */
   readonly VITE_DEV_SERVER_URL: undefined | string;
 }

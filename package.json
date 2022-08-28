@@ -9,7 +9,7 @@
   },
   "packageManager": "pnpm@7.0.0",
   "repository": {
-    "url": "https://github.com/Konseyy/vite-electron-boilerplate"
+    "url": "https://github.com/Konseyy/electron-webpack-template"
   },
   "author": {
     "email": "vgbukalders@gmail.com",

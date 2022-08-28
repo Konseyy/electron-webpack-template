@@ -95,8 +95,6 @@ jobs:
       - name: Compile & release Electron app
         uses: ./.github/actions/electron-builder
         id: electron-builder
-        env:
-          VITE_APP_VERSION: ${{ needs.draft.outputs.version }}
         with:
           build_script_name: build
           args: --config .electron-builder.config.js

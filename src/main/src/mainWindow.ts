@@ -32,7 +32,7 @@ async function createWindow() {
 
   /**
    * URL for main window.
-   * Vite dev server for development.
+   * Webpack dev server for development.
    * `file://../renderer/index.html` for production and test.
    */
   const pageUrl =

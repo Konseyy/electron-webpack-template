@@ -18,7 +18,7 @@ type Permissions =
 /**
  * A list of origins that you allow open INSIDE the application and permissions for them.
  *
- * In development mode you need allow open `VITE_DEV_SERVER_URL`.
+ * In development mode you need allow open `DEV_SERVER_URL`.
  */
 const ALLOWED_ORIGINS_AND_PERMISSIONS = new Map<string, Set<Permissions>>(
   process.env.mode === 'development' && process.env.DEV_SERVER_URL

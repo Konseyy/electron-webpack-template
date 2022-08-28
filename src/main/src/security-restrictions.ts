@@ -21,8 +21,8 @@ type Permissions =
  * In development mode you need allow open `VITE_DEV_SERVER_URL`.
  */
 const ALLOWED_ORIGINS_AND_PERMISSIONS = new Map<string, Set<Permissions>>(
-  import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL
-    ? [[new URL(import.meta.env.VITE_DEV_SERVER_URL).origin, new Set()]]
+  process.env.mode === 'development' && process.env.DEV_SERVER_URL
+    ? [[new URL(process.env.DEV_SERVER_URL).origin, new Set()]]
     : []
 );
 
@@ -56,7 +56,7 @@ app.on('web-contents-created', (_, contents) => {
     // Prevent navigation
     event.preventDefault();
 
-    if (import.meta.env.DEV) {
+    if (process.env.mode === 'development') {
       console.warn(`Blocked navigating to disallowed origin: ${origin}`);
     }
   });
@@ -73,7 +73,7 @@ app.on('web-contents-created', (_, contents) => {
     const permissionGranted = !!ALLOWED_ORIGINS_AND_PERMISSIONS.get(origin)?.has(permission);
     callback(permissionGranted);
 
-    if (!permissionGranted && import.meta.env.DEV) {
+    if (!permissionGranted && process.env.mode === 'development') {
       console.warn(`${origin} requested permission for '${permission}', but was rejected.`);
     }
   });
@@ -95,7 +95,7 @@ app.on('web-contents-created', (_, contents) => {
     if (ALLOWED_EXTERNAL_ORIGINS.has(origin)) {
       // Open url in default browser.
       shell.openExternal(url).catch(console.error);
-    } else if (import.meta.env.DEV) {
+    } else if (process.env.mode === 'development') {
       console.warn(`Blocked the opening of a disallowed origin: ${origin}`);
     }
 
@@ -113,7 +113,7 @@ app.on('web-contents-created', (_, contents) => {
   contents.on('will-attach-webview', (event, webPreferences, params) => {
     const { origin } = new URL(params.src);
     if (!ALLOWED_ORIGINS_AND_PERMISSIONS.has(origin)) {
-      if (import.meta.env.DEV) {
+      if (process.env.mode === 'development') {
         console.warn(`A webview tried to attach ${params.src}, but was blocked.`);
       }
 

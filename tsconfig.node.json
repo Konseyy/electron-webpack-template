@@ -1,0 +1,8 @@
+{
+  "ts-node": {
+    "compilerOptions": {
+      "noImplicitAny": false,
+      "module": "NodeNext"
+    }
+  }
+}

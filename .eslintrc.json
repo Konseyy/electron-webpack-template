@@ -42,6 +42,7 @@
       {
         "avoidEscape": true
       }
-    ]
+    ],
+    "@typescript-eslint/no-empty-interface": "off"
   }
 }

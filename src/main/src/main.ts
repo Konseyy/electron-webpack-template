@@ -43,7 +43,7 @@ app
  * Install React devtools or any other extension in development mode only.
  * Note: You must install `electron-devtools-installer` manually
  */
-if (import.meta.env.DEV) {
+if (process.env.MODE === 'development') {
   app
     .whenReady()
     .then(() => import('electron-devtools-installer'))
@@ -60,7 +60,7 @@ if (import.meta.env.DEV) {
 /**
  * Check for new version of the application - production mode only.
  */
-if (import.meta.env.PROD) {
+if (process.env.MODE === 'production') {
   app
     .whenReady()
     .then(() => import('electron-updater'))

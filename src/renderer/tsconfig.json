@@ -2,19 +2,10 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "paths": {
-      "#preload": ["../preload/src/index"],
-      "/@/*": ["./src/*"]
-    },
+    "paths": {},
     "lib": ["ESNext", "dom", "dom.iterable"]
   },
-  "include": [
-    "src/**/*.vue",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "types/**/*.d.ts",
-    "../../types/**/*.d.ts"
-  ],
-  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
+  "plugins": [{ "name": "typescript-plugin-css-modules" }],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "types/**/*.d.ts", "../../types/**/*.d.ts"],
   "extends": "../../tsconfig.common.json"
 }

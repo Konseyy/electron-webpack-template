@@ -1,7 +1,7 @@
 {
   "version": "0.0.0",
   "name": "electron-webpack-template",
-  "description": "Electron boilerplate using Vite",
+  "description": "Electron boilerplate using Webpack",
   "private": true,
   "engines": {
     "node": ">=v18.0.0",
@@ -13,7 +13,7 @@
   },
   "author": {
     "email": "vgbukalders@gmail.com",
-    "name": "Valdis",
+    "name": "Konsey",
     "url": "https://valdis.me"
   },
   "main": "src/main/dist/index.js",
